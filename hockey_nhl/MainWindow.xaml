@@ -1,0 +1,65 @@
+﻿<Window x:Class="hockey_nhl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hockey_nhl"
+        mc:Ignorable="d"
+        Title="NHLRoster" Height="350" Width="525">
+    <Grid>
+        <ListBox x:Name="PlayersBox" HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="256" Margin="10,15,0,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="45" Width="224">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>                            
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3,3"/>
+                        <TextBlock Text="{Binding Height}" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="3,3"/>
+                        <TextBlock Text="{Binding Position}" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Margin="3,3"/>
+                        <TextBlock Text="{Binding Status}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="3,3"/>
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Background" Value="White" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Status}" Value="Injured">
+                                        <Setter Property="Background" Value="#FFF08080"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Status}" Value="Active">
+                                        <Setter Property="Background" Value="#FF8FBC8F" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name="ActualBox" HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="130" Margin="271,15,0,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="45" Width="Auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3,3"/>
+                        <TextBlock Text="{Binding Position}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3,3"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="Add" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="81" Margin="417,16,0,0" Click="Add_Click"/>
+        <Button x:Name="Mod" Content="Mod" HorizontalAlignment="Left" VerticalAlignment="Top" Width="81" Margin="417,41,0,0" Click="Mod_Click"/>
+        <Button x:Name="Remove" Content="Remove" HorizontalAlignment="Left" VerticalAlignment="Top" Width="81" Margin="417,66,0,0" Click="Remove_Click"/>
+        <Button x:Name="MoveFromPlayersToActual" Content="Move &gt;&gt;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="81"  Margin="417,91,0,0" Click="MoveFromPlayersToActual_Click"/>
+        <Button x:Name="MoveFromActualToPlayers" Content="Move &lt;&lt;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="81" Margin="417,116,0,0"  Click="MoveFromActualToPlayers_Click"/>
+        
+
+    </Grid>
+</Window>
